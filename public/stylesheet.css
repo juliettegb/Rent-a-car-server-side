@@ -1,0 +1,30 @@
+body {
+  color: black;
+  background: #C0D6DF;
+}
+
+h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 15px;
+  text-align: center;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.name:hover {
+  font-size: 30px;
+}
+
+.formulaire {
+  text-align: center;
+}
+
+.container {
+  text-align: center;
+}
