@@ -66,8 +66,9 @@ app.post('/form', upload.array(), function(req, res){
     car.save(function (error, car){ //on est sur de l'asynchrone donc fonction de callback qui sera exécutée lorsque le backend aura fini son boulot!
       console.log(error);
       console.log(car);
+      console.log('************');
 
-      // voir les .then dans App.js
+      // cf .then dans App.js
       res.send(car.id);
     });
 
@@ -87,7 +88,7 @@ app.post('/saveImageCar', function(req,res){
 
   // Use the mv() method to place the file somewhere on your server
   //.name = this.props.id+'.jpg' (cf cameraExample.js)
-  imageCar.mv('./public/'+imageCar.name+'.jpg', function(err) {
+  imageCar.mv('./public/'+imageCar.name, function(err) {
     if (err)
       return res.status(500).send(err);
 
