@@ -66,6 +66,9 @@ app.post('/form', upload.array(), function(req, res){
     car.save(function (error, car){ //on est sur de l'asynchrone donc fonction de callback qui sera exécutée lorsque le backend aura fini son boulot!
       console.log(error);
       console.log(car);
+
+      // voir les .then dans App.js
+      res.json({id:car.id});
     });
 
   });
@@ -74,6 +77,7 @@ app.post('/form', upload.array(), function(req, res){
 
 });
 
+//Ajout d'une route pour enregistrer la photo prise avec la camera
 app.post('/saveImageCar', function(req,res){
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
