@@ -7,6 +7,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('public')); //va chercher docs dans "public", ici donc la feuille de style
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+//CameraExample
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 var multer = require('multer');
 var upload = multer ({
   dest: './uploads/'
@@ -14,6 +18,7 @@ var upload = multer ({
 
 var carList = [];
 
+//Enregistrement BDD
 var options = { server: { socketOptions: {connectTimeoutMS: 30000 } }};
 mongoose.connect('mongodb://juliettegb:Drivy@ds133496.mlab.com:33496/drivy', options, function(err){
   console.log(err);
@@ -29,6 +34,8 @@ var carSchema = mongoose.Schema({
 });
 
 var carModel = mongoose.model('Car', carSchema);
+
+
 
 app.get('/', function(req, res){
   res.render('carForm', {carList});
@@ -66,6 +73,20 @@ app.post('/form', upload.array(), function(req, res){
   res.render('carForm', {carList});
 
 });
+
+app.post('/saveImageCar', function(req,res){
+
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let imageCar = req.files.imageCar;
+
+  // Use the mv() method to place the file somewhere on your server
+  imageCar.mv('./public/image1.jpg', function(err) {
+    if (err)
+      return res.status(500).send(err);
+
+    res.send('File uploaded!');
+  });
+})
 
 var port = (process.env.PORT || 8080);
 
