@@ -68,7 +68,7 @@ app.post('/form', upload.array(), function(req, res){
       console.log(car);
 
       // voir les .then dans App.js
-      res.json({id:car.id});
+      res.send(car.id);
     });
 
   });
