@@ -81,10 +81,13 @@ app.post('/form', upload.array(), function(req, res){
 app.post('/saveImageCar', function(req,res){
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  //.files = mécanique automatique grâce au fileupload
   let imageCar = req.files.imageCar;
+  console.log(imageCar);
 
   // Use the mv() method to place the file somewhere on your server
-  imageCar.mv('./public/image1.jpg', function(err) {
+  //.name = this.props.id+'.jpg' (cf cameraExample.js)
+  imageCar.mv('./public/'+imageCar.name+'.jpg', function(err) {
     if (err)
       return res.status(500).send(err);
 
