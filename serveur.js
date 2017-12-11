@@ -11,11 +11,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
 
-var multer = require('multer');
-var upload = multer ({
-  dest: './uploads/'
-});
-
 var carList = [];
 
 //Enregistrement BDD
@@ -41,7 +36,7 @@ app.get('/', function(req, res){
   res.render('carForm', {carList});
 });
 
-app.post('/form', upload.array(), function(req, res){
+app.post('/form', function(req, res){
   console.log(req.body);
 
   request("https://maps.googleapis.com/maps/api/geocode/json?address="+req.body.ville+"&key=AIzaSyDLiaDOwBIN3ZMlrVJ3KVSbqqsXbC6SXb4", function(error, response, data){
