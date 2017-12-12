@@ -36,6 +36,8 @@ app.get('/', function(req, res){
   res.render('carForm', {carList});
 });
 
+
+
 app.post('/form', function(req, res){
   console.log(req.body);
 
@@ -61,7 +63,6 @@ app.post('/form', function(req, res){
     car.save(function (error, car){ //on est sur de l'asynchrone donc fonction de callback qui sera exécutée lorsque le backend aura fini son boulot!
       console.log(error);
       console.log(car);
-      console.log('************');
 
       // cf .then dans App.js
       res.send(car.id);
@@ -72,6 +73,8 @@ app.post('/form', function(req, res){
   //res.render('carForm', {carList});
 
 });
+
+
 
 //Ajout d'une route pour enregistrer la photo prise avec la camera
 app.post('/saveImageCar', function(req,res){
@@ -90,6 +93,14 @@ app.post('/saveImageCar', function(req,res){
     res.send('File uploaded!');
   });
 })
+
+
+
+app.get("/getCars", function(req, res) {
+  carModel.find({}, function(err, cars) {
+    res.send(cars);
+  });
+});
 
 var port = (process.env.PORT || 8080);
 
